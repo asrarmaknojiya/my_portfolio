@@ -56,7 +56,7 @@ export default function Hero() {
               Get In Touch
             </button>
             <a
-              href="/Asrar-Maknojiya -Resume.pdf"
+              href="/Asrar-Maknojiya-Resume.pdf"
               download
               className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-8 py-4 rounded-lg hover:bg-gray-200 transition-all duration-300 font-medium text-lg"
             >
