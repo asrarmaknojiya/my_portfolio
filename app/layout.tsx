@@ -28,7 +28,7 @@ html {
         <title>Asrar Maknojiya — Full Stack Developer</title>
         <meta name="title" content="Asrar Maknojiya — Full Stack Developer" />
         <meta name="description" content="I craft modern web apps with React, Node.js, Express, MySQL, and more. Full-stack developer building high-performance digital experiences." />
-
+        <link rel="icon" type="image/jpg+xml" href="/icon.jpg" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://asrarmaknojiya.vercel.app/" />
         <meta property="og:title" content="Asrar Maknojiya — Full Stack Developer" />
