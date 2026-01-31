@@ -46,7 +46,7 @@ export default function About() {
 
           <div className="max-w-3xl mx-auto text-center space-y-6 text-gray-600 text-lg leading-relaxed">
             <p>
-           Hey, I’m Asrar — a passionate Full Stack Developer on a mission to build clean, scalable, and meaningful web experiences. Right now,During my time at Valuda’s Tech Park, I successfully built a complete e-commerce platform (ZepX) using React, Node.js, Express, and MySQL — handling everything from frontend UI to backend APIs and database logic.
+           Hey, I’m Asrar — a passionate Full Stack Developer on a mission to build clean, scalable, and meaningful web experiences. Right now,During my time at Valuda’s Tech Park Trainee, I successfully built a complete e-commerce platform (ZepX) using React, Node.js, Express, and MySQL — handling everything from frontend UI to backend APIs and database logic.
             </p>
             <p>
             I focus on writing efficient code, designing smooth UIs, and building APIs that just work.

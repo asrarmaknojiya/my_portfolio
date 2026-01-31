@@ -28,11 +28,11 @@ export default function Experience() {
 
   const experiences = [
   {
-    title: "Full Stack Developer Intern",
+    title: "Full Stack Developer Trainee",
     company: "Valuda's Technology Park",
     location: "Chhapi, Gujarat",
     duration: "June 2025 – Present",
-    type: "Internship",
+    type: "Trainee",
     description:
       "Actively contributing to the development of a full-scale e-commerce platform named ZepX. Gaining deep hands-on experience in full stack development, especially around backend integration, UI/UX consistency, and system architecture.",
     achievements: [
