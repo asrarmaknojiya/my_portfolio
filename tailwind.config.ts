@@ -12,7 +12,14 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			sans: ['var(--font-sans)', 'sans-serif'],
+  			heading: ['var(--font-heading)', 'sans-serif'],
+  			mono: ['var(--font-mono)', 'monospace'],
+  		},
   		colors: {
+			gradientStart: 'hsl(var(--gradient-start))',
+			gradientEnd: 'hsl(var(--gradient-end))',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

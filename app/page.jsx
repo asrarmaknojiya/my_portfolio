@@ -12,11 +12,13 @@ import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 import ProjectModal from "@/components/project-modal"
 
+import { AnimatePresence } from "framer-motion"
+
 export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState(null)
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Header />
       <main>
         <Hero />
@@ -28,7 +30,9 @@ export default function Portfolio() {
         <Contact />
       </main>
       <Footer />
+      <AnimatePresence>
       {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
+      </AnimatePresence>
     </div>
   )
 }

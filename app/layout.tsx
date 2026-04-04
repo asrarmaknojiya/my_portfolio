@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
+import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
+const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-heading' })
+const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
 export const metadata: Metadata = {
   title: 'Asrar Maknojiya || Full Stack Developer',
@@ -15,15 +18,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${jakarta.variable} ${mono.variable}`}>
       <head>
-        <style>{`
-html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
-        `}</style>
         <meta name="google-site-verification" content="t1KTM_KgajzM11fgv4NGU_MS-t1Ho7OwnICDWzFcqmQ" />
         <title>Asrar Maknojiya — Full Stack Developer</title>
         <meta name="title" content="Asrar Maknojiya — Full Stack Developer" />
@@ -41,7 +37,7 @@ html {
 
         <link rel="canonical" href="https://asrarmaknojiya.vercel.app/" />
       </head>
-      <body>{children}</body>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   )
 }

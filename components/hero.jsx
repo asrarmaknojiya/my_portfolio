@@ -1,72 +1,91 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { ChevronDown, Github, Linkedin, Mail, Download } from "lucide-react"
+import { ChevronDown, Github, Linkedin, Mail, Download, ArrowRight } from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function Hero() {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
-
-  const scrollToAbout = () => {
-    const element = document.getElementById("about")
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
     }
   }
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  }
+
   return (
-    <section
-      id="hero"
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 pt-20"
-    >
-      <div className="container mx-auto px-6 text-center">
-        <div
-          className={`transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Background glowing effects */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))] rounded-full blur-[120px] opacity-20 dark:opacity-10 pointer-events-none -z-10 animate-[pulse_8s_ease-in-out_infinite]" />
+      
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="max-w-4xl mx-auto text-center"
         >
-          <div className="mb-6">
-            <span className="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
-              👋 Hello, I'm
+          <motion.div variants={itemVariants} className="mb-8">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-secondary/50 text-secondary-foreground text-sm font-medium backdrop-blur-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              Available for new projects
             </span>
-          </div>
+          </motion.div>
 
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">Asrar Maknojiya</h1>
+          <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-heading font-black text-foreground mb-6 tracking-tight leading-tight">
+            Hi, I'm <br className="md:hidden" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))]">
+              Asrar Maknojiya
+            </span>
+          </motion.h1>
 
-          <h2 className="text-3xl md:text-3xl text-gray-600 mb-8 font-light">Full Stack Developer</h2>
+          <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl font-light text-muted-foreground mb-8">
+            Building Digital Experiences that <span className="font-medium text-foreground">Inspire</span>
+          </motion.h2>
 
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Dedicated to developing full-stack applications with seamless UI, secure backend logic, and optimized performance.
-          </p>
+          <motion.p variants={itemVariants} className="text-lg md:text-xl text-muted-foreground/80 max-w-2xl mx-auto mb-12 leading-relaxed">
+            Full Stack Developer specializing in highly performant, visually stunning, and rigorously secure web applications.
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
             <button
-              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-              className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 font-medium text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              onClick={() => scrollToSection("projects")}
+              className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-foreground text-background font-medium rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95"
             >
-              View My Work
-            </button>
-            <button
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300 font-medium text-lg"
-            >
-              Get In Touch
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative flex items-center gap-2">
+                View My Work
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </span>
             </button>
             <a
               href="/Asrar-Maknojiya-Resume.pdf"
               download
-              className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-8 py-4 rounded-lg hover:bg-gray-200 transition-all duration-300 font-medium text-lg"
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-secondary text-secondary-foreground font-medium rounded-full hover:bg-secondary/80 transition-all hover:scale-105 active:scale-95 border border-border"
             >
-              <Download size={20} />
-              Resume
+              <Download size={18} className="group-hover:-translate-y-1 transition-transform" />
+              Download Resume
             </a>
-          </div>
+          </motion.div>
 
           {/* Social Links */}
-          <div className="flex justify-center space-x-6 mb-16">
+          <motion.div variants={itemVariants} className="flex justify-center items-center gap-6">
             {[
               { icon: Github, href: "https://github.com/asrarmaknojiya", label: "GitHub" },
               { icon: Linkedin, href: "https://www.linkedin.com/in/asrar-maknojiya-b03a01326/", label: "LinkedIn" },
@@ -77,20 +96,29 @@ export default function Hero() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:text-blue-600 hover:border-blue-600 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                className="p-3 text-muted-foreground hover:text-foreground bg-secondary/50 hover:bg-secondary rounded-full border border-border hover:border-transparent transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20 backdrop-blur-sm"
+                aria-label={social.label}
               >
-                <social.icon size={20} />
+                <social.icon size={22} />
               </a>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <button
-          onClick={scrollToAbout}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-gray-400 hover:text-blue-600 transition-colors duration-300"
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          onClick={() => scrollToSection("about")}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-foreground transition-colors hidden md:block"
         >
-          <ChevronDown size={32} />
-        </button>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          >
+            <ChevronDown size={32} />
+          </motion.div>
+        </motion.button>
       </div>
     </section>
   )
