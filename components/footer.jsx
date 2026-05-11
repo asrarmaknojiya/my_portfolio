@@ -29,14 +29,14 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-card border-t border-border/50 text-foreground py-16 relative overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
+    <footer className="bg-cardBg border-t border-border text-foreground py-16 relative overflow-hidden">
+      <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
               <div className="text-3xl font-heading font-black tracking-tighter cursor-pointer" onClick={scrollToTop}>
-                ASRAR<span className="text-transparent bg-clip-text bg-gradient-to-r from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))]">.</span>
+                ASRAR<span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">.</span>
               </div>
             </div>
             <p className="text-muted-foreground leading-relaxed mb-8 max-w-sm">
@@ -79,18 +79,18 @@ export default function Footer() {
               <div>
                 <p className="text-muted-foreground mb-1">Email</p>
                 <a
-                  href="mailto:asrarjabir786@gmail.com"
-                  className="font-medium text-foreground hover:text-[hsl(var(--gradient-start))] transition-colors duration-300"
+                  href="mailto:asrar.dev.in@gmail.com"
+                  className="font-medium text-foreground hover:text-accent transition-colors duration-300"
                 >
-                  asrarjabir786@gmail.com
+                  asrar.dev.in@gmail.com
                 </a>
               </div>
               <div className="pt-2">
                 <p className="text-muted-foreground mb-1">Status</p>
                 <p className="font-medium text-foreground flex items-center gap-2">
                    <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
                   </span>
                   Available for new projects
                 </p>

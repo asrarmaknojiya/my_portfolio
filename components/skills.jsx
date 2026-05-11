@@ -1,99 +1,308 @@
 "use client"
 
-import { Code, Server, Terminal } from "lucide-react"
+import { useEffect, useRef, useState, useCallback } from "react"
 import { motion } from "framer-motion"
 
-export default function Skills() {
-  const categories = [
-    {
-      title: "Frontend",
-      icon: <Code size={24} />,
-      color: "from-blue-400 to-cyan-400",
-      skills: ["React.js", "Next.js", "JavaScript", "Tailwind CSS", "HTML5", "CSS3", "Framer Motion"],
-    },
-    {
-      title: "Backend",
-      icon: <Server size={24} />,
-      color: "from-emerald-400 to-teal-400",
-      skills: ["Node.js", "Express.js", "MySQL", "RESTful APIs"],
-    },
-    {
-      title: "Tools & Workflow",
-      icon: <Terminal size={24} />,
-      color: "from-violet-400 to-purple-400",
-      skills: ["Git", "GitHub", "Postman", "VS Code", "Vercel", "Figma"],
-    },
-  ]
+const TERMINALS = [
+  {
+    id: "frontend",
+    title: "frontend",
+    command: "generate frontend skills",
+    skillColorVar: "--accent",
+    skills: ["React.js", "Next.js", "JavaScript", "Tailwind CSS", "HTML5", "CSS3"],
+  },
+  {
+    id: "backend",
+    title: "backend",
+    command: "generate backend skills",
+    skillColorVar: "--accent-light",
+    skills: ["Java", "Spring Boot", "Node.js", "Express.js", "MySQL", "REST APIs", "JWT Authentication"],
+  },
+  {
+    id: "tools",
+    title: "tools & workflow",
+    command: "generate tools & workflow",
+    skillColorVar: "--accent-dark",
+    skills: ["Git", "GitHub", "Postman", "VS Code", "Vercel", "Intellij IDEA" , "Maven"],
+  },
+]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
-  }
+function useTypewriter(text, speed = 42) {
+  const [displayed, setDisplayed] = useState("")
+  const [done, setDone] = useState(false)
+  const started = useRef(false)
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  }
+  const start = useCallback(() => {
+    if (started.current) return
+    started.current = true
+    setDisplayed("")
+    setDone(false)
+    let i = 0
+    const iv = setInterval(() => {
+      i++
+      setDisplayed(text.slice(0, i))
+      if (i >= text.length) {
+        clearInterval(iv)
+        setDone(true)
+      }
+    }, speed)
+  }, [text, speed])
+
+  return { displayed, done, start }
+}
+
+function TypeLine({ text, colorVar, speed = 18, delay = 0, onDone }) {
+  const [displayed, setDisplayed] = useState("")
+  const [started, setStarted] = useState(false)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setStarted(true)
+      let i = 0
+      const iv = setInterval(() => {
+        i++
+        setDisplayed(text.slice(0, i))
+        if (i >= text.length) {
+          clearInterval(iv)
+          onDone?.()
+        }
+      }, speed)
+      return () => clearInterval(iv)
+    }, delay)
+    return () => clearTimeout(timeout)
+  }, [])
+
+  if (!started && !displayed) return null
 
   return (
-    <section id="skills" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-secondary/30 pointer-events-none -z-10" />
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        
-        <motion.div 
+    <div
+      style={{
+        fontFamily: "'Courier New', Courier, monospace",
+        fontSize: 12,
+        color: `var(${colorVar})`,
+        lineHeight: 1.8,
+        whiteSpace: "pre",
+      }}
+    >
+      {displayed}
+    </div>
+  )
+}
+
+function Cursor() {
+  return (
+    <span
+      style={{
+        display: "inline-block",
+        width: 7,
+        height: 13,
+        background: "var(--dark-text)",
+        verticalAlign: "text-bottom",
+        marginLeft: 2,
+        animation: "cmdBlink 0.9s step-end infinite",
+      }}
+    />
+  )
+}
+
+function TerminalCard({ terminal, triggerRun }) {
+  const [phase, setPhase] = useState("idle") // idle | typing | outputting | done
+  const { displayed: cmdTyped, done: cmdDone, start: startCmd } = useTypewriter(terminal.command, 42)
+
+  const BASE_DELAY = 600
+  const SKILL_BASE = BASE_DELAY + 900
+  const skillCount = terminal.skills.length
+  const doneDelay = SKILL_BASE + (skillCount - 1) * 150 + 400
+
+  function run() {
+    if (phase !== "idle") return
+    setPhase("typing")
+    startCmd()
+  }
+
+  useEffect(() => {
+    if (cmdDone) setTimeout(() => setPhase("outputting"), 120)
+  }, [cmdDone])
+
+  useEffect(() => {
+    if (triggerRun) run()
+  }, [triggerRun])
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      whileHover={{ y: phase === "idle" ? -4 : 0, transition: { duration: 0.2 } }}
+      onClick={run}
+      style={{
+        background: "var(--dark-bg)",
+        borderRadius: "var(--radius)",
+        border: "1px solid var(--dark-border)",
+        overflow: "hidden",
+        cursor: phase === "idle" ? "pointer" : "default",
+        fontFamily: "'Courier New', Courier, monospace",
+        boxShadow: "var(--shadow-glass)",
+      }}
+      onMouseEnter={(e) => {
+        if (phase === "idle") e.currentTarget.style.borderColor = "var(--border-color)"
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "var(--dark-border)"
+      }}
+    >
+      {/* Title bar */}
+      <div
+        style={{
+          background: "var(--dark-surface)",
+          padding: "9px 12px",
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          borderBottom: "1px solid var(--dark-border)",
+        }}
+      >
+        <div style={{ display: "flex", gap: 5 }}>
+          {["#EF4444", "#F59E0B", "#10B981"].map((c, i) => (
+            <div key={i} style={{ width: 10, height: 10, borderRadius: "50%", background: c }} />
+          ))}
+        </div>
+        <span style={{ fontSize: 11, color: "var(--dark-muted)", marginLeft: 4, letterSpacing: "0.06em" }}>
+          command prompt — {terminal.title}
+        </span>
+      </div>
+
+      {/* Body */}
+      <div style={{ padding: "14px 14px 18px", minHeight: 270 }}>
+        {/* Prompt line */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: 4,
+            marginBottom: 4,
+            fontSize: 12,
+          }}
+        >
+          <span style={{ color: "var(--accent)" }}>user</span>
+          <span style={{ color: "var(--dark-muted)" }}>@</span>
+          <span style={{ color: "var(--accent-light)" }}>portfolio</span>
+          <span style={{ color: "var(--dark-muted)" }}>:~$</span>
+          {phase === "idle" ? (
+            <>
+              <span style={{ color: "var(--dark-muted)" }}>&nbsp;{terminal.command}</span>
+              <Cursor />
+            </>
+          ) : (
+            <>
+              <span style={{ color: "var(--dark-text)" }}>&nbsp;{cmdTyped}</span>
+              {!cmdDone && <Cursor />}
+            </>
+          )}
+        </div>
+
+        {/* Idle hint */}
+        {phase === "idle" && (
+          <p style={{ fontSize: 11, color: "var(--dark-muted)", marginTop: 6 }}>
+            click to run
+          </p>
+        )}
+
+        {/* Output */}
+        {(phase === "outputting" || phase === "done") && (
+          <div style={{ marginTop: 4 }}>
+            <TypeLine text="> Scanning modules..." colorVar="--dark-muted" delay={60} speed={18} />
+            <TypeLine
+              text={`> Loading ${terminal.title} stack...`}
+              colorVar="--dark-muted"
+              delay={BASE_DELAY}
+              speed={18}
+            />
+            <div style={{ height: 6 }} />
+            {terminal.skills.map((skill, i) => (
+              <TypeLine
+                key={skill}
+                text={`[LOADED] ${skill}`}
+              colorVar={terminal.skillColorVar.replace('var(', '').replace(')', '')} // Strip if needed or use directly
+                delay={SKILL_BASE + i * 150}
+                speed={18}
+              />
+            ))}
+            <div style={{ height: 6 }} />
+            <TypeLine
+              text={`> ${skillCount} modules loaded. Done.`}
+              colorVar="--accent"
+              delay={doneDelay}
+              speed={18}
+              onDone={() => setPhase("done")}
+            />
+            {phase === "done" && (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 4,
+                  marginTop: 10,
+                  fontSize: 12,
+                }}
+              >
+                <span style={{ color: "var(--accent)" }}>user</span>
+                <span style={{ color: "var(--dark-muted)" }}>@</span>
+                <span style={{ color: "var(--accent-light)" }}>portfolio</span>
+                <span style={{ color: "var(--dark-muted)" }}>:~$</span>
+                <Cursor />
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </motion.div>
+  )
+}
+
+export default function Skills() {
+  const [enterFired, setEnterFired] = useState(false)
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === "Enter") setEnterFired(true)
+    }
+    window.addEventListener("keydown", handler)
+    return () => window.removeEventListener("keydown", handler)
+  }, [])
+
+  return (
+    <section id="skills" className="section-padding bg-background relative">
+      <div className="container-custom flex flex-col items-center">
+        {/* Heading */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-20"
+          className="mb-16 text-center"
         >
-          <h2 className="text-sm font-bold tracking-widest text-[hsl(var(--gradient-start))] uppercase mb-4">Skills & Stack</h2>
-          <h3 className="text-4xl md:text-5xl font-heading font-black text-foreground mb-6">
+          <span className="section-subtitle">
+            Skills & Stack
+          </span>
+          <h2 className="section-title mb-5">
             What I Bring to the Table
-          </h3>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
-            From frontend finesse to backend brains — I build end-to-end applications with clean code and highly scalable logic.
+          </h2>
+          <p className="section-description mx-auto mt-5 text-center">
+      Click each terminal to load my stack — 
+from React interfaces to Spring Boot APIs, 
+every tool I use has a reason to be there.
           </p>
         </motion.div>
 
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid md:grid-cols-3 gap-8"
-        >
-          {categories.map((category, index) => (
-            <motion.div
-              key={category.title}
-              variants={cardVariants}
-              whileHover={{ y: -8 }}
-              className="relative p-8 rounded-3xl bg-card border border-border/50 shadow-xl overflow-hidden group"
-            >
-              {/* Background gradient blur on hover */}
-              <div className={`absolute -right-12 -top-12 w-40 h-40 bg-gradient-to-br ${category.color} rounded-full blur-[60px] opacity-10 group-hover:opacity-30 transition-opacity duration-500`} />
-              
-              <div className="flex flex-col items-center text-center relative z-10">
-                <div className={`w-14 h-14 rounded-2xl bg-secondary flex items-center justify-center mb-6 text-foreground border border-border group-hover:bg-background transition-all`}>
-                  {category.icon}
-                </div>
-                
-                <h4 className="text-xl font-bold text-foreground mb-8">{category.title}</h4>
-                
-                <div className="flex flex-wrap justify-center gap-2">
-                  {category.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-4 py-2 text-sm font-medium rounded-xl bg-secondary/50 text-secondary-foreground border border-border/50 hover:bg-foreground hover:text-background hover:scale-105 hover:-translate-y-1 transition-all duration-300 shadow-sm cursor-default"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+        {/* Terminal Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full">
+          {TERMINALS.map((terminal) => (
+            <TerminalCard key={terminal.id} terminal={terminal} triggerRun={enterFired} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

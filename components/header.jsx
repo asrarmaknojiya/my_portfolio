@@ -56,16 +56,18 @@ export default function Header() {
       <nav 
         className={`w-full max-w-4xl rounded-full transition-all duration-500 border ${
           isScrolled 
-            ? "bg-background/80 backdrop-blur-xl shadow-2xl shadow-primary/5 border-border py-3 px-6" 
+            ? "glass-card !rounded-full py-3 px-6" 
             : "bg-transparent border-transparent py-4 px-6"
         }`}
       >
         <div className="flex items-center justify-between">
           <div 
-            className="text-2xl font-heading font-black tracking-tighter text-foreground cursor-pointer" 
+            className={`text-2xl font-heading font-black tracking-tighter cursor-pointer transition-colors duration-300 ${
+              isScrolled ? "text-title" : "text-white"
+            }`} 
             onClick={() => scrollToSection('hero')}
           >
-            ASRAR<span className="text-transparent bg-clip-text bg-gradient-to-r from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))]">.</span>
+            ASRAR<span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">.</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -77,7 +79,7 @@ export default function Header() {
                 className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
                   activeSection === item.id 
                     ? "text-foreground" 
-                    : "text-muted-foreground hover:text-foreground"
+                    : (isScrolled ? "text-muted-foreground hover:text-foreground" : "text-white/60 hover:text-white")
                 }`}
               >
                 {activeSection === item.id && (
@@ -94,7 +96,9 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-foreground hover:bg-secondary rounded-full transition-colors duration-200 focus:outline-none"
+            className={`md:hidden p-2 rounded-full transition-colors duration-200 focus:outline-none ${
+              isScrolled ? "text-foreground hover:bg-secondary" : "text-white hover:bg-white/10"
+            }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -110,7 +114,7 @@ export default function Header() {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden mt-4 overflow-hidden"
             >
-              <div className="bg-card/90 backdrop-blur-xl rounded-2xl shadow-xl border border-border p-4 space-y-1 relative">
+              <div className="glass-card !rounded-2xl p-4 space-y-1 relative">
                 {navItems.map((item) => (
                   <button
                     key={item.id}

@@ -1,98 +1,189 @@
-"use client"
+"use client";
 
-import { Mail, Phone, MapPin } from "lucide-react"
-import { motion } from "framer-motion"
+import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { motion } from "framer-motion";
+import { useForm, ValidationError } from "@formspree/react";
 
 export default function Contact() {
+  const [state, handleSubmit] = useForm("meevgwjy");
+
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "asrarjabir786@gmail.com",
-      href: "mailto:asrarjabir786@gmail.com",
-      description: "Feel free to email anytime",
+      value: "asrar.dev.in@gmail.com",
+      href: "mailto:asrar.dev.in@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+91 (862) 582-9857",
+      value: "+91 8625829857",
       href: "tel:+918625829857",
-      description: "Call or message me",
     },
     {
       icon: MapPin,
       label: "Location",
       value: "Gujarat, India",
-      description: "Coding from the heart of Gujarat",
-    }
-  ]
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  }
+      href: "#",
+    },
+  ];
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-background pointer-events-none -z-10" />
-      
-      {/* Background glow */}
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-gradient-to-r from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))] rounded-full blur-[150px] opacity-10 pointer-events-none -z-10 translate-x-1/2 translate-y-1/2" />
+    <section
+      id="contact"
+      className="section-padding bg-background relative overflow-hidden"
+    >
+      {/* Glow */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_bottom_right,var(--accent)_0%,transparent_40%)] opacity-10" />
 
-      <div className="container mx-auto px-6 max-w-5xl relative z-10">
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+      <div className="container-custom">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
           className="text-center mb-16 flex flex-col items-center"
         >
-          <span className="text-sm font-bold tracking-widest text-[hsl(var(--gradient-start))] uppercase mb-4 block">
+          <span className="section-subtitle">
             Get In Touch
           </span>
-          <h2 className="text-4xl md:text-5xl font-heading font-black text-foreground mb-6">
+
+          <h2 className="section-title mb-5">
             Let's Connect
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Have any questions or want to discuss a project? I'm currently open for new opportunities. Let's build something amazing together!
+
+          <p className="section-description mx-auto text-center">
+            Open for new opportunities, freelance work, and meaningful builds.
+            If you have an idea, let's talk.
           </p>
         </motion.div>
 
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
-        >
-          {contactInfo.map((info) => (
-            <motion.a
-              variants={itemVariants}
-              key={info.label}
-              href={info.href}
-              className="group relative p-8 bg-card/40 backdrop-blur-sm rounded-3xl border border-border/50 hover:bg-secondary/50 hover:border-[hsl(var(--gradient-start))]/40 transition-all duration-300 shadow-sm flex flex-col items-center text-center overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-b from-[hsl(var(--gradient-start))]/0 to-[hsl(var(--gradient-start))]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-              
-              <div className="w-16 h-16 bg-background rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-border group-hover:shadow-[0_0_15px_hsl(var(--gradient-start))] group-hover:border-transparent transition-all z-10 relative">
-                <info.icon size={28} className="text-foreground group-hover:text-[hsl(var(--gradient-start))] transition-colors" />
+        {/* Layout */}
+        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8">
+          {/* Left Side */}
+          <div className="space-y-5">
+            {contactInfo.map((item, index) => (
+              <motion.a
+                key={index}
+                href={item.href}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="group flex items-center gap-5 glass-card !rounded-3xl p-6 hover:border-accent/30 transition"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center">
+                  <item.icon size={22} className="text-accent group-hover:scale-110 transition-transform" />
+                </div>
+
+                <div>
+                  <p className="text-sm text-textMuted">
+                    {item.label}
+                  </p>
+                  <p className="text-title font-semibold">
+                    {item.value}
+                  </p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Right Form */}
+          <motion.form
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="glass-card !rounded-[32px] p-8"
+          >
+            <h3 className="text-2xl font-bold text-title mb-8">
+              Send Message
+            </h3>
+
+            {state.succeeded ? (
+              <div className="rounded-2xl bg-accent/10 border border-accent/20 p-6 text-center">
+                <p className="text-accent font-semibold text-lg">
+                  Message sent successfully ✨
+                </p>
+                <p className="text-textMuted mt-2">
+                  Thanks for reaching out. I'll reply soon.
+                </p>
               </div>
-              
-              <div className="relative z-10">
-                <h3 className="text-xl font-bold text-foreground mb-2">{info.label}</h3>
-                <p className="text-foreground font-medium mb-2">{info.value}</p>
-                <p className="text-sm text-muted-foreground">{info.description}</p>
-              </div>
-            </motion.a>
-          ))}
-        </motion.div>
+            ) : (
+              <>
+                <div className="grid md:grid-cols-2 gap-5 mb-5">
+                  <div>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      required
+                      className="w-full rounded-2xl border border-border bg-background px-5 py-4 outline-none focus:border-accent"
+                    />
+                  </div>
+
+                  <div>
+                    <input
+                      id="email"
+                      type="email"
+                      name="email"
+                      placeholder="Your Email"
+                      required
+                      className="w-full rounded-2xl border border-border bg-background px-5 py-4 outline-none focus:border-accent"
+                    />
+
+                    <ValidationError
+                      prefix="Email"
+                      field="email"
+                      errors={state.errors}
+                      className="text-red-500 text-sm mt-2"
+                    />
+                  </div>
+                </div>
+
+                <div className="mb-5">
+                  <input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                    required
+                    className="w-full rounded-2xl border border-border bg-background px-5 py-4 outline-none focus:border-accent"
+                  />
+                </div>
+
+                <div className="mb-6">
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="6"
+                    placeholder="Your Message"
+                    required
+                    className="w-full rounded-2xl border border-border bg-background px-5 py-4 outline-none focus:border-accent resize-none"
+                  />
+
+                  <ValidationError
+                    prefix="Message"
+                    field="message"
+                    errors={state.errors}
+                    className="text-red-500 text-sm mt-2"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={state.submitting}
+                  className="primary-btn w-full !py-4"
+                >
+                  <Send size={18} />
+                  {state.submitting
+                    ? "Sending..."
+                    : "Send Message"}
+                </button>
+              </>
+            )}
+          </motion.form>
+        </div>
       </div>
     </section>
-  )
+  );
 }
