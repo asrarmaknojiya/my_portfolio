@@ -12,6 +12,7 @@ export default function Experience() {
 const experiences = [
 
   {
+    img : "/valudas.png",
     title: "Full Stack Developer Trainee",
     company: "Valuda's Technology Park",
     location: "Chhapi, Gujarat",
@@ -34,6 +35,7 @@ const experiences = [
     ],
   },
     {
+    img : "/quba.png",
     title: "Full Stack Developer Intern",
     company: "Quba Infotech",
     location: "Chhapi, Gujarat",
@@ -95,7 +97,7 @@ const experiences = [
               <div className="flex gap-5">
                 {/* Logo */}
                 <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0">
-                  <Building2 size={24} className="text-accent" />
+                    <img src={exp.img} alt="" className="rounded-2xl" />
                 </div>
 
                 {/* Content */}
