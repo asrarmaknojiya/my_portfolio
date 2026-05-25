@@ -244,14 +244,8 @@ and React interfaces on the front that are as solid as the code behind them.
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3"
         >
-          <span className="text-[10px] uppercase tracking-[0.25em] text-textMuted font-mono">Scroll</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-[1px] h-12 bg-gradient-to-b from-textMuted to-transparent"
-          />
+         
         </motion.div>
       </div>
     </section>
