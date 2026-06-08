@@ -14,13 +14,13 @@ const GROUPS = [
     id: 1,
     name: "Backend",
     desc: "Scalable APIs and server-side logic built for production load.",
-    skills: ["Java", "Spring Boot", "Node.js", "Express.js", "MySQL", "REST APIs", "JWT Auth"],
+    skills: ["Node.js", "Express.js", "MySQL", "REST APIs", "JWT Auth","Prisma ORM"],
   },
   {
     id: 2,
     name: "Tools",
     desc: "A tight workflow — from local dev to production deploy.",
-    skills: ["Git", "GitHub", "Postman", "VS Code", "Vercel", "IntelliJ IDEA", "Maven"],
+    skills: ["Git", "GitHub", "Postman", "VS Code", "Vercel","Vite" ],
   },
 ]
 

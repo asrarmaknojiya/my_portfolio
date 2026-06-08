@@ -86,8 +86,6 @@ handling everything from database schema to API design to the final UI.
 
               <p className="mt-5 text-base md:text-lg text-textMuted leading-relaxed">
          Today I build scalable systems using{" "}
-<span className="text-accent font-semibold">Java + Spring Boot</span>{" "}
-and{" "}
 <span className="text-accent font-semibold">Node.js + Express</span>{" "}
 on the backend, paired with React & Next.js on the frontend — 
 built for real users, real load, and real business needs.

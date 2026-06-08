@@ -42,12 +42,12 @@ const experiences = [
     duration: "Feb 2026 – Present",
     employmentType: "Internship",
     description:
-      "Currently working on real-world client projects in a professional Agile environment. Deepening expertise in Java and Spring Boot for backend architecture while building modern frontends with Next.js. Collaborating with a team using Jira and Slack — shipping features that go into actual production systems.",
+      "Currently working on real-world client projects in a professional Agile environment. Building scalable backend systems with Node.js and Express while creating modern frontends with Next.js. Collaborating with a team using Jira and Slack — shipping features that go into actual production systems.",
     skills: [
-      "Java",
-      "Spring Boot",
+  
       "Node.js",
       "Express.js",
+      "prisma ORM",
       "Next.js",
       "MySQL",
       "REST APIs",

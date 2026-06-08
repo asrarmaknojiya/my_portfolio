@@ -96,11 +96,7 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="text-textMuted text-lg md:text-xl leading-relaxed max-w-xl"
             >
-              <span className="text-white font-medium">Asrar Maknojiya</span> — full-stack developer 
-who turns ideas into{" "}
-<span className="text-accent font-medium">production-ready systems</span>. 
-From Java & Spring Boot to Node.js on the backend, MySQL databases to REST APIs — 
-and React interfaces on the front that are as solid as the code behind them.
+              <span className="text-white font-medium">Asrar Maknojiya</span> — full-stack developer who turns ideas into <span className="text-accent font-medium">production-ready systems</span>. Node.js & Express on the backend, MySQL databases to REST APIs — and React interfaces on the front that are as solid as the code behind them.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -227,11 +223,7 @@ and React interfaces on the front that are as solid as the code behind them.
                   className="absolute bottom-[25%] right-[5%]" 
                   delay={0.6}
                 />
-                <TechBadge 
-                  label="Java" 
-                  className="absolute bottom-[12%] left-[12%]" 
-                  delay={0.7}
-                />
+
 
               </div>
             </div>
