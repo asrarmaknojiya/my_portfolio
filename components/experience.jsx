@@ -10,16 +10,57 @@ import { motion } from "framer-motion";
 
 export default function Experience() {
 const experiences = [
-
   {
-    img : "/valudas.png",
-    title: "Full Stack Developer Trainee",
+    img: "/quba.png",
+    title: "MERN Stack Developer",
+    company: "Quba Infotech",
+    location: "Chhapi, Gujarat",
+    duration: "Jun 2026 – Present",
+    employmentType: "Full-time",
+    description:
+      "Promoted from intern to full-time developer. Building and maintaining production backend systems with Node.js, Express.js, and Prisma ORM — including schema migrations and role-based access control across multiple application modules. Developing responsive Next.js/React frontends integrated with backend APIs in an Agile/Scrum environment using Jira and Slack.",
+    skills: [
+      "Node.js",
+      "Express.js",
+      "Prisma ORM",
+      "Next.js",
+      "React",
+      "MySQL",
+      "REST APIs",
+      "RBAC",
+      "JWT Auth",
+      "Tailwind CSS",
+    ],
+  },
+  {
+    img: "/quba.png",
+    title: "MERN Stack Developer Intern",
+    company: "Quba Infotech",
+    location: "Chhapi, Gujarat",
+    duration: "Feb 2026 – May 2026",
+    employmentType: "Internship",
+    description:
+      "Worked on real-world client projects in a professional Agile environment. Built and consumed RESTful APIs with Node.js and Express.js in a production codebase, while contributing to frontend development in Next.js and React under senior developer guidance. Collaborated with a team using Jira and Slack.",
+    skills: [
+      "Node.js",
+      "Express.js",
+      "Prisma ORM",
+      "Next.js",
+      "MySQL",
+      "REST APIs",
+      "Tailwind CSS",
+      "Slack",
+    ],
+  },
+  {
+    img: "/valudas.png",
+    title: "MERN Stack Developer Trainee",
     company: "Valuda's Technology Park",
     location: "Chhapi, Gujarat",
     duration: "Jun 2024 – Jan 2026",
     employmentType: "Full-time · Trainee",
     description:
-      "Completed an intensive full-stack training program — went from fundamentals to shipping real products. Built an e-commerce platform, a real estate web app, and several other client-facing projects. Gained deep hands-on experience integrating third-party services like Google Auth and Razorpay into production-ready applications.",
+      "Completed an intensive MERN Stack training program — went from fundamentals to shipping real products. Built an e-commerce platform, a real estate web app, and several other client-facing projects. Gained deep hands-on experience integrating third-party services like Google Auth and Razorpay into production-ready applications.",
     skills: [
       "HTML",
       "CSS",
@@ -32,27 +73,6 @@ const experiences = [
       "JWT",
       "Google Auth",
       "Razorpay",
-    ],
-  },
-    {
-    img : "/quba.png",
-    title: "Full Stack Developer Intern",
-    company: "Quba Infotech",
-    location: "Chhapi, Gujarat",
-    duration: "Feb 2026 – Present",
-    employmentType: "Internship",
-    description:
-      "Currently working on real-world client projects in a professional Agile environment. Building scalable backend systems with Node.js and Express while creating modern frontends with Next.js. Collaborating with a team using Jira and Slack — shipping features that go into actual production systems.",
-    skills: [
-  
-      "Node.js",
-      "Express.js",
-      "prisma ORM",
-      "Next.js",
-      "MySQL",
-      "REST APIs",
-      "Tailwind CSS",
-      "Slack",
     ],
   },
 ];

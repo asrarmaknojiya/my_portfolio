@@ -74,14 +74,14 @@ export default function Hero() {
               className="space-y-3"
             >
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
-               <span className="text-white">Backend-first.</span>
-<br />
-<span className="text-white">Full-stack by</span>
-<br />
-<span className="relative inline-block">
-  <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">
-    nature.
-  </span>
+                <span className="text-white">Backend-first.</span>
+                <br />
+                <span className="text-white">Built to handle</span>
+                <br />
+                <span className="relative inline-block">
+                  <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">
+                    real load.
+                  </span>
                   <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 200 8" fill="none">
                     <path d="M0 4C50 4 50 2 100 2C150 2 150 6 200 6" stroke="var(--accent)" strokeOpacity="0.3" strokeWidth="2" strokeLinecap="round"/>
                   </svg>
@@ -96,7 +96,7 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="text-textMuted text-lg md:text-xl leading-relaxed max-w-xl"
             >
-              <span className="text-white font-medium">Asrar Maknojiya</span> — full-stack developer who turns ideas into <span className="text-accent font-medium">production-ready systems</span>. Node.js & Express on the backend, MySQL databases to REST APIs — and React interfaces on the front that are as solid as the code behind them.
+              <span className="text-white font-medium">Asrar Maknojiya</span> — I design backend systems that stay reliable as they scale, and pair them with React/Next.js interfaces that don't get in the way. Node.js, Express, MySQL, and clean API design underneath; fast, usable UI on top.
             </motion.p>
 
             {/* CTA Buttons */}

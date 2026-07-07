@@ -10,17 +10,17 @@ const GROUPS = [
     desc: "Pixel-sharp interfaces with React, Next.js and modern CSS.",
     skills: ["React.js", "Next.js", "JavaScript", "Tailwind CSS", "HTML5", "CSS3"],
   },
-  {
-    id: 1,
-    name: "Backend",
-    desc: "Scalable APIs and server-side logic built for production load.",
-    skills: ["Node.js", "Express.js", "MySQL", "REST APIs", "JWT Auth","Prisma ORM"],
-  },
+{
+  id: 1,
+  name: "Backend",
+  desc: "Scalable APIs and server-side logic built for production load.",
+  skills: ["Node.js", "Express.js", "MySQL", "REST APIs", "JWT Auth", "Prisma ORM", "RBAC"],
+},
   {
     id: 2,
     name: "Tools",
     desc: "A tight workflow — from local dev to production deploy.",
-    skills: ["Git", "GitHub", "Postman", "VS Code", "Vercel","Vite" ],
+    skills: ["Git", "GitHub", "Postman", "VS Code", "Vercel","Vite" ,"Slack"],
   },
 ]
 

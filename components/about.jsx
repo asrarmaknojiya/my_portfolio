@@ -11,8 +11,7 @@ import {
 
 export default function About() {
   const stats = [
-    { number: "1+", label: "Years Experience", icon: Briefcase },
-    { number: "4+", label: "Projects Delivered", icon: Layers },
+    { number: "4+", label: "Projects Build", icon: Layers },
     { number: "10+", label: "Tech Stack", icon: Code2 },
     { number: "IN", label: "Based in Gujarat", icon: MapPin },
   ];
@@ -69,26 +68,30 @@ export default function About() {
             {/* Story Card */}
             <div className="glass-card p-8 md:p-10">
               <p className="text-lg md:text-xl text-textMuted leading-relaxed">
-               Hey, I'm{" "}
-<span className="font-semibold text-foreground">Asrar Maknojiya</span>.
-I build full-stack systems where the frontend feels effortless 
-and the backend never breaks under pressure.
+                Hey, I'm{" "}
+                <span className="font-semibold text-foreground">Asrar Maknojiya</span>.
+                I build systems where the backend is engineered to hold up under{" "}
+                <span className="text-black font-medium">real users and real data</span> — 
+                and the frontend never feels like an afterthought.
               </p>
 
               <div className="mt-8 h-px w-full bg-border/60" />
 
               <p className="mt-8 text-base md:text-lg text-textMuted leading-relaxed">
-               I've shipped production-grade platforms — e-commerce engines, 
- and auth systems with{" "}
-<span className="text-foreground font-semibold">JWT & role-based access</span> — 
-handling everything from database schema to API design to the final UI.
+                I've shipped production platforms handling schema migrations,{" "}
+                <span className="text-foreground font-semibold">role-based access control</span>, 
+                and authentication (JWT, Google OAuth) — end-to-end, from database design to the interface users actually touch.
               </p>
 
               <p className="mt-5 text-base md:text-lg text-textMuted leading-relaxed">
-         Today I build scalable systems using{" "}
-<span className="text-accent font-semibold">Node.js + Express</span>{" "}
-on the backend, paired with React & Next.js on the frontend — 
-built for real users, real load, and real business needs.
+                My stack:{" "}
+                <span className="text-accent font-semibold">Node.js + Express + Prisma ORM + MySQL</span> on the backend, 
+                React + Next.js on the frontend. Built for systems that need to survive{" "}
+                <span className="text-accent font-semibold">real load</span>, not just look good in a demo.
+              </p>
+
+              <p className="mt-5 text-base md:text-lg text-textMuted leading-relaxed">
+                I don't just build features — I design for what happens when things scale.
               </p>
             </div>
 
