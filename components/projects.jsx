@@ -13,7 +13,7 @@ export default function Projects({ onProjectClick }) {
     {
       id: 0,
       title: "Sheetal Sweets & Bakery",
-      category: "Full Stack Web App",
+      category: "MERN Stack Web App",
       year: "Featured Case Study",
       image: "/sheetal-main.png",
       images: [
@@ -36,30 +36,30 @@ export default function Projects({ onProjectClick }) {
     },
 
     {
-  id: 1,
-  title: "Student Management System",
-  category: "Backend REST API",
-  year: "Featured Case Study",
-  image: "/sms-main.png",
-  images: ["/sms-main.png"],
-  githubUrl: "https://github.com/asrarmaknojiya/Students-Management-System-In-Java-Spring-Boot",
-  liveUrl: null,
-  description:
-    "A production-grade REST API built with Java and Spring Boot — covering student records, course enrollment, role-based access control, file uploads, and paginated responses. Every layer architected cleanly from entity to controller.",
-  technologies: ["Java", "Spring Boot", "MySQL", "JWT", "REST API"],
-  features: [
-    "JWT Auth & Role-Based Access",
-    "Student & Course Management",
-    "Enrollment System",
-    "UUID-Based Image Uploads",
-    "Pagination & Filtering",
-    "Layered Architecture",
-  ],
-},
+      id: 1,
+      title: "Student Management System",
+      category: "Backend REST API",
+      year: "Featured Case Study",
+      image: "/sms-main.png",
+      images: ["/sms-main.png"],
+      githubUrl: "https://github.com/asrarmaknojiya/Students-Management-System-In-Java-Spring-Boot",
+      liveUrl: null,
+      description:
+        "A production-grade REST API built with Java and Spring Boot — covering student records, course enrollment, role-based access control, file uploads, and paginated responses. Every layer architected cleanly from entity to controller.",
+      technologies: ["Java", "Spring Boot", "MySQL", "JWT", "REST API"],
+      features: [
+        "JWT Auth & Role-Based Access",
+        "Student & Course Management",
+        "Enrollment System",
+        "UUID-Based Image Uploads",
+        "Pagination & Filtering",
+        "Layered Architecture",
+      ],
+    },
     {
       id: 2,
       title: "ZepX Commerce Platform",
-      category: "Full Stack Case Study",
+      category: "MERN Stack Case Study",
       year: "Featured Case Study",
       image: "/products.png",
       images: [
